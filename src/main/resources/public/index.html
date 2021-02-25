@@ -1,0 +1,67 @@
+<h1>Javalin Rainbow Hat demo</h1>
+
+<h2>Choose 4 letters to display:</h2>
+
+    <input type="text" name="displayValue" id="displayValue">
+    <input type="hidden" id="displayValueHidden">
+    <br>
+    <button onclick="sendMessageRest(document.getElementById('displayValue').value); document.getElementById('displayValueHidden').value = document.getElementById('displayValue').value;">Submit</button>
+
+
+    <div>
+      <div style="width: 216px; height: 126px; position: relative;">
+        <div style="position: absolute;">
+          <canvas id="display" width="520" height=434"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+<script type="text/javascript" src="segment-display.js"></script>
+    <script type="text/javascript">
+    
+    function sendMessageRest(message){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/display", true);
+        xhttp.setRequestHeader("Content-type", "text/plain");
+        xhttp.send(message);
+   }
+
+      var display = new SegmentDisplay("display");
+      display.pattern         = "####";
+      display.displayAngle    = 6;
+      display.digitHeight     = 20;
+      display.digitWidth      = 14;
+      display.digitDistance   = 2.5;
+      display.segmentWidth    = 2;
+      display.segmentDistance = 0.3;
+      display.segmentCount    = 14;
+      display.cornerType      = 2;
+      display.colorOn         = "rgba(0, 0, 0, 0.9)";
+      display.colorOff        = "rgba(0, 0, 0, 0.1)";
+
+      start();
+
+      function start() {
+        display.setValue(document.getElementById('displayValueHidden').value);
+        window.setTimeout(function(){start();}, 100);
+      }
+
+    </script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 40px auto;
+    }
+
+    select {
+        margin: 5px 0;
+    }
+
+    h1, h2, h3 {
+        margin-top: 1.5em;
+        margin-bottom: 5px;
+    }
+</style>
