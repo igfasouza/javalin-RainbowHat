@@ -2,3 +2,8 @@
 
 A simple Javalin example that shows a 14 segments display and control in real-time using my Java Driver to control the Rainbow Hat 14 segments display. 
 14 segments display - 5421AG with HT16K33 Driver
+
+
+![Demo](pictures/javalin.jpg)
+
+- [Blog post](http://www.igfasouza.com/blog/rainbow-hat-and-java/)
